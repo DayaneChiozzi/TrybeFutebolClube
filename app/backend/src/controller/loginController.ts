@@ -8,10 +8,6 @@ class LoginController {
 
   public login = async (req: Request, res: Response): Promise<Response | IToken> => {
     const { email } = req.body;
-    const result = await this.loginService.login(email);
-    if (!result) {
-      return res.status(404).json({ message: 'email or password not found!' });
-    }
     const resultToken = token.createToken(email);
     return res.status(200).json({ token: resultToken });
   };
