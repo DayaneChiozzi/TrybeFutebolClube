@@ -1,9 +1,9 @@
 import * as express from 'express';
 import LoginController from './controller/loginController';
-// import LoginValidate from 'loginValidate';
+import ValidateLogin from './middleware/ValidateLogin';
 
 const loginController = new LoginController();
-// const loginValidate = new LoginValidate();
+const validateLogin = new ValidateLogin();
 
 class App {
   public app: express.Express;
@@ -15,7 +15,7 @@ class App {
 
     // Não remover essa rota
     this.app.get('/', (req, res) => res.json({ ok: true }));
-    this.app.post('/login', loginController.login);
+    this.app.post('/login', validateLogin.loginVerify, loginController.login);
   }
 
   private config():void {
