@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { sign } from 'jsonwebtoken';
+import { sign, verify, JwtPayload } from 'jsonwebtoken';
 
 const secret = process.env.JWT_SECRET as string;
 
@@ -8,4 +8,9 @@ const createToken = (email:string) => {
   return token;
 };
 
-export default { createToken };
+const tokenValidate = (token: string): JwtPayload => {
+  const decoded = verify(token, secret);
+  return decoded as JwtPayload;
+};
+
+export default { createToken, tokenValidate };
