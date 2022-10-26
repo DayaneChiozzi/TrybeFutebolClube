@@ -11,6 +11,13 @@ class LoginController {
     const resultToken = token.createToken(email);
     return res.status(200).json({ token: resultToken });
   };
+
+  public getLoginValidate = async (req: Request, res: Response): Promise<Response> => {
+    const { authorization } = req.headers;
+    const validateToken = token.tokenValidate(authorization as string);
+    const result = await this.loginService.getLoginValidate(validateToken.email);
+    return res.status(200).json(result);
+  };
 }
 
 export default LoginController;
