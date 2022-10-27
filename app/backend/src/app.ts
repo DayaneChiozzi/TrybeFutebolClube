@@ -1,9 +1,11 @@
 import * as express from 'express';
 import LoginController from './controller/loginController';
 import ValidateLogin from './middleware/ValidateLogin';
+import TeamsController from './controller/teamsController';
 
 const loginController = new LoginController();
 const validateLogin = new ValidateLogin();
+const teamsController = new TeamsController();
 
 class App {
   public app: express.Express;
@@ -17,6 +19,7 @@ class App {
     this.app.get('/', (req, res) => res.json({ ok: true }));
     this.app.post('/login', validateLogin.loginVerify, loginController.login);
     this.app.get('/login/validate', loginController.getLoginValidate);
+    this.app.get('/teams', teamsController.getAll);
   }
 
   private config():void {
