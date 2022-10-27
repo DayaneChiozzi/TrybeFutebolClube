@@ -3,6 +3,7 @@ import LoginController from './controller/loginController';
 import ValidateLogin from './middleware/ValidateLogin';
 import TeamsController from './controller/teamsController';
 import MatchesController from './controller/matchesController';
+import validateToken from './middleware/validationToken';
 
 const loginController = new LoginController();
 const validateLogin = new ValidateLogin();
@@ -24,6 +25,7 @@ class App {
     this.app.get('/teams', teamsController.getAll);
     this.app.get('/teams/:id', teamsController.getByPk);
     this.app.get('/matches', matchesController.getAll);
+    this.app.post('/matches', validateToken, matchesController.create);
   }
 
   private config():void {
