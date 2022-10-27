@@ -1,3 +1,4 @@
+import QueryString = require('qs');
 import MatchModel from '../database/models/MatchModel';
 import TeamsModel from '../database/models/TeamsModel';
 
@@ -18,10 +19,21 @@ class MatchesService {
   public matchModel = MatchModel;
   // public teamsService: TeamsService;
 
-  public getAll = async () => {
-    const resultModel = await this.matchModel.findAll({ include: excludeIdTeams });
-    console.log(resultModel);
-    return resultModel;
+  public getAll = async (inProgress:
+  string | string[] | QueryString.ParsedQs | QueryString.ParsedQs[] | undefined) => {
+    if (!inProgress) {
+      const matcheGetAll = await this.matchModel.findAll({ include: excludeIdTeams });
+      return matcheGetAll;
+    }
+
+    const isVerify = inProgress === 'true' ? 1 : 0;
+
+    const matcheInProgress = await this.matchModel.findAll({
+      where: { inProgress: isVerify },
+      include: excludeIdTeams,
+    });
+
+    return matcheInProgress;
   };
 }
 
