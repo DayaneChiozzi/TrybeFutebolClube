@@ -2,10 +2,12 @@ import * as express from 'express';
 import LoginController from './controller/loginController';
 import ValidateLogin from './middleware/ValidateLogin';
 import TeamsController from './controller/teamsController';
+import MatchesController from './controller/matchesController';
 
 const loginController = new LoginController();
 const validateLogin = new ValidateLogin();
 const teamsController = new TeamsController();
+const matchesController = new MatchesController();
 
 class App {
   public app: express.Express;
@@ -21,6 +23,7 @@ class App {
     this.app.get('/login/validate', loginController.getLoginValidate);
     this.app.get('/teams', teamsController.getAll);
     this.app.get('/teams/:id', teamsController.getByPk);
+    this.app.get('/matches', matchesController.getAll);
   }
 
   private config():void {
