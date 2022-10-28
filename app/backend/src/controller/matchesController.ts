@@ -1,4 +1,5 @@
 import { RequestHandler } from 'express';
+// import IInProgress from '../interface/IInProgress';
 import MatchesService from '../service/MatchesService';
 // import CustomError from '../error/CustomError';
 
@@ -21,6 +22,12 @@ class MatchesController {
     const { id } = req.params;
     await this.matchesService.updateMatch(Number(id));
     return res.status(200).json({ message: 'Finished' });
+  };
+
+  public updateMatchInProgress:RequestHandler = async (req, res) => {
+    const { id } = req.params;
+    await this.matchesService.updateMatchId(Number(id), req.body);
+    return res.status(200).json({ message: 'Updated goals' });
   };
 }
 
