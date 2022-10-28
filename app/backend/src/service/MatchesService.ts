@@ -1,4 +1,5 @@
 import QueryString = require('qs');
+import IInProgress from '../interface/IInProgress';
 import MatchModel from '../database/models/MatchModel';
 import TeamsModel from '../database/models/TeamsModel';
 import TeamsService from './TeamsService';
@@ -46,6 +47,13 @@ class MatchesService {
     const resultUpdateFinish = await this
       .matchModel.update({ inProgress: false }, { where: { id } });
     return resultUpdateFinish;
+  };
+
+  public updateMatchId = async (id:number, goals: IInProgress) => {
+    await this.matchModel.findByPk(id);
+    const resultUpdateInProgress = await this.matchModel
+      .update({ ...goals }, { where: { id } });
+    return resultUpdateInProgress;
   };
 }
 
