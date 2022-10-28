@@ -42,11 +42,11 @@ class MatchesService {
     return resultCreate;
   };
 
-  // public updateMatch = async (id:number) => {
-  //   const resultUpdateFinish = await this
-  //     .matchModel.update({ inProgress: false }, { where: { id } });
-  //   return resultUpdateFinish;
-  // };
+  public updateMatch = async (id:number) => {
+    const resultUpdateFinish = await this
+      .matchModel.update({ inProgress: false }, { where: { id } });
+    return resultUpdateFinish;
+  };
 }
 
 export default MatchesService;
