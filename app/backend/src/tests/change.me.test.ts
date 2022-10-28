@@ -1,5 +1,6 @@
 import * as sinon from 'sinon';
 import * as chai from 'chai';
+import { StatusCodes } from 'http-status-codes';
 // @ts-ignore
 import chaiHttp = require('chai-http');
 
@@ -46,4 +47,13 @@ describe('POST / login', () => {
       expect(httpResponse.status).to.equal(400);
       expect(httpResponse.body).to.deep.equal({ message: 'All fields must be filled' })
   });
+
+  it('retorna  status 200 como response e um token válido na messagem', async () => {
+    const httpResponseLogin = await chai.request(app).post('/login')
+    .send({ email: 'admin@admin.com', password: 'secret_admin' });
+
+    expect(httpResponseLogin.status).to.equal(StatusCodes.OK);
+  })
+
+
 });
