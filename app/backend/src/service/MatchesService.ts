@@ -23,12 +23,11 @@ class MatchesService {
 
   public getAll = async (inProgress:
   string | string[] | QueryString.ParsedQs | QueryString.ParsedQs[] | undefined) => {
+    const isVerify = inProgress === 'true' ? 1 : 0;
     if (!inProgress) {
       const matcheGetAll = await this.matchModel.findAll({ include: excludeIdTeams });
       return matcheGetAll;
     }
-
-    const isVerify = inProgress === 'true' ? 1 : 0;
 
     const matcheInProgress = await this.matchModel.findAll({
       where: { inProgress: isVerify },
@@ -42,6 +41,12 @@ class MatchesService {
     const resultCreate = await this.matchModel.create({ ...match, inProgress: true });
     return resultCreate;
   };
+
+  // public updateMatch = async (id:number) => {
+  //   const resultUpdateFinish = await this
+  //     .matchModel.update({ inProgress: false }, { where: { id } });
+  //   return resultUpdateFinish;
+  // };
 }
 
 export default MatchesService;
