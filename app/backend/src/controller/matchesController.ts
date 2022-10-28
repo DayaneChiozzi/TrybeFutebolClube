@@ -17,11 +17,11 @@ class MatchesController {
     return res.status(201).json(salveMatch);
   };
 
-  // public updateMatch:RequestHandler = async (req, res) => {
-  //   const { id } = req.params;
-  //   await this.matchesService.updateMatch(Number(id));
-  //   return res.status(200).json({ message: 'Finished' });
-  // };
+  public updateMatch:RequestHandler = async (req, res) => {
+    const { id } = req.params;
+    await this.matchesService.updateMatch(Number(id));
+    return res.status(200).json({ message: 'Finished' });
+  };
 }
 
 export default MatchesController;
