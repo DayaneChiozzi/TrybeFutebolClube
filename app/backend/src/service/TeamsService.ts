@@ -1,5 +1,5 @@
 import TeamsModel from '../database/models/TeamsModel';
-import ITeams from '../interface/ITeam';
+import { ITeams } from '../interface/ITeam';
 
 class TeamsService {
   public model = TeamsModel;
