@@ -5,11 +5,13 @@ import TeamsController from './controller/teamsController';
 import MatchesController from './controller/matchesController';
 import validateToken from './middleware/validationToken';
 import validateMatches from './middleware/validateMatches';
+import LeaderController from './controller/leaderController';
 
 const loginController = new LoginController();
 const validateLogin = new ValidateLogin();
 const teamsController = new TeamsController();
 const matchesController = new MatchesController();
+const leaderController = new LeaderController();
 
 class App {
   public app: express.Express;
@@ -29,6 +31,7 @@ class App {
     this.app.post('/matches', validateMatches, validateToken, matchesController.create);
     this.app.patch('/matches/:id/finish', matchesController.updateMatch);
     this.app.patch('/matches/:id', matchesController.updateMatchInProgress);
+    this.app.get('/leaderboard/home', leaderController.classification);
   }
 
   private config():void {
