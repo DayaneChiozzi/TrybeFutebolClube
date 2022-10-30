@@ -1,5 +1,5 @@
 interface ILeaderboard {
-  name: string,
+  name: number | string | undefined,
   totalPoints: number,
   totalGames: number,
   totalVictories: number,
@@ -8,6 +8,7 @@ interface ILeaderboard {
   goalsFavor: number,
   goalsOwn: number,
   goalsBalance: number,
-  efficiency: string
+  efficiency: number
 }
+
 export default ILeaderboard;
