@@ -53,6 +53,7 @@ class MatchesService {
     await this.matchModel.findByPk(id);
     const resultUpdateInProgress = await this.matchModel
       .update({ ...goals }, { where: { id } });
+    // console.log('SERVICE', resultUpdateInProgress);
     return resultUpdateInProgress;
   };
 }
