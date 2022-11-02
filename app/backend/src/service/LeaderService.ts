@@ -36,8 +36,8 @@ class LeaderService {
       return objTeams;
     }, {});
 
-    console.log(team);
-    console.log(matcheGetAll);
+    // console.log(team);
+    // console.log(matcheGetAll);
 
     const classification = classi.sumTeams(resultTeam, matcheGetAll);
 
