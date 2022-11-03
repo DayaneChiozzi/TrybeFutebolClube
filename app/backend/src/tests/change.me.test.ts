@@ -1,13 +1,12 @@
 import * as sinon from 'sinon';
 import * as chai from 'chai';
 import { StatusCodes } from 'http-status-codes';
-// @ts-ignore
-import chaiHttp = require('chai-http');
+import chaiHttp from 'chai-http';
 
 import { app } from '../app';
-import Example from '../database/models/ExampleModel';
+// import Example from '../database/models/ExampleModel';
 
-import { Response } from 'superagent';
+// import { Response } from 'superagent';
 
 chai.use(chaiHttp);
 
