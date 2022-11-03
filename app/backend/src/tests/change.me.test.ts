@@ -1,12 +1,13 @@
 import * as sinon from 'sinon';
 import * as chai from 'chai';
 import { StatusCodes } from 'http-status-codes';
-import chaiHttp from 'chai-http';
+// @ts-ignore
+import chaiHttp = require('chai-http');
 
 import { app } from '../app';
 // import Example from '../database/models/ExampleModel';
 
-// import { Response } from 'superagent';
+import { Response } from 'superagent';
 
 chai.use(chaiHttp);
 
@@ -53,6 +54,4 @@ describe('POST / login', () => {
 
     expect(httpResponseLogin.status).to.equal(StatusCodes.OK);
   })
-
-
 });
